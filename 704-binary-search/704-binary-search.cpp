@@ -14,7 +14,6 @@ public:
             else if(nums[mid]<target){
                 l=mid+1;
             }
-            mid=(l+h)/2;
         
         }
         return -1; 
