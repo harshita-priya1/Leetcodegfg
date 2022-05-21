@@ -4,9 +4,8 @@ public:
         sort(salary.begin(),salary.end());
         int n=salary.size();
         double avg=0;
-        for(int i=1;i<n-1;i++){
-            avg=avg+(double)salary[i];
-        }
+        avg=accumulate(salary.begin(),salary.end(),0);
+        avg=avg-salary[0]-salary[n-1];
         avg=avg/(n-2);
         return avg;
     }
