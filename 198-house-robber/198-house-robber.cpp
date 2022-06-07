@@ -1,18 +1,17 @@
 class Solution {
 public:
-    int ansf(vector<int>&nums,vector<int>&dp,int n,int i){
-        if(i>n-1)return 0;
-        if(dp[i]!=-1)return dp[i];
-        int sum1=ansf(nums,dp,n,i+1);
-        int sum2=nums[i] +ansf(nums,dp,n,i+2);
-        return dp[i]=max(sum1,sum2);
-    }
+    
     int rob(vector<int>& nums) {
         int n=nums.size();
-        vector <int>dp(n,-1);
-        int i=0;
-        int ans=ansf(nums,dp,n,i);
-        return ans;
+        vector <int>dp(n+2,-1);
+        dp[n]=0;
+        dp[n+1]=0;
+        for(int i=n-1;i>=0;i--){
+            int sum1=dp[i+1];
+            int sum2=nums[i]+dp[i+2];
+            dp[i]=max(sum1,sum2);
+        }
+        return dp[0];
         
     }
 };
