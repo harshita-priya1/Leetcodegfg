@@ -1,18 +1,15 @@
 class Solution {
 public:
-    void solve(vector<int>& nums, vector<vector<int>>& ans, vector<int> p,vector<int> mark){
+    void solve(vector<int> nums, vector<vector<int>>& ans, vector<int> p, int i){
         if(p.size()==nums.size()){
             ans.push_back(p);
             return;
         }
-        for(int j=0;j<nums.size();j++){
-            if(mark[j]==0){
-                p.push_back(nums[j]);
-                mark[j]=1;
-                solve(nums,ans,p,mark);
-                p.pop_back();
-                mark[j]=0;
-                }
+        for(int j=i;j<nums.size();j++){
+            swap(nums[i],nums[j]);
+            p.push_back(nums[i]);
+            solve(nums,ans,p,i+1);
+            p.pop_back();
         }
         
     }
@@ -20,8 +17,7 @@ public:
     vector<vector<int>> permute(vector<int>& nums) {
         vector<vector<int>> ans;
         vector<int> p;
-        vector <int> mark(nums.size(),0);
-        solve(nums,ans,p,mark);
+        solve(nums,ans,p,0);
         return ans;
     }
 };
