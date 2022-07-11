@@ -1,18 +1,27 @@
 class Solution {
 public:
-    vector<vector<int>> permute(vector<int>& nums) {
-        if(nums.size()<=1) return {nums};
-        vector<vector<int>> result;
-        for(int i=0;i<nums.size();++i){
-            vector<int>v(nums.begin(),nums.end());
-            v.erase(v.begin()+i);
-            auto res=permute(v);
-            for(int j=0;j<res.size();++j){
-                vector<int> v1=res[j];
-                v1.insert(v1.begin(), nums[i]);
-                result.push_back(v1);
-            }
+    void solve(vector<int>& nums, vector<vector<int>>& ans, vector<int> p,vector<int> mark){
+        if(p.size()==nums.size()){
+            ans.push_back(p);
+            return;
         }
-        return result;
+        for(int j=0;j<nums.size();j++){
+            if(mark[j]==0){
+                p.push_back(nums[j]);
+                mark[j]=1;
+                solve(nums,ans,p,mark);
+                p.pop_back();
+                mark[j]=0;
+                }
+        }
+        
+    }
+    
+    vector<vector<int>> permute(vector<int>& nums) {
+        vector<vector<int>> ans;
+        vector<int> p;
+        vector <int> mark(nums.size(),0);
+        solve(nums,ans,p,mark);
+        return ans;
     }
 };
