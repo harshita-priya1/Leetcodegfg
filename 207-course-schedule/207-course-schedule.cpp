@@ -12,9 +12,13 @@ public:
         for (int i = 0; i < n; i++)
             if (indeg[i] == 0) q.push(i);
         while (!q.empty()) {
-            int curr = q.front(); q.pop(); n--;
-            for (auto next: adj[curr])
-                if (--indeg[next] == 0) q.push(next);
+            int node = q.front(); 
+            q.pop(); 
+            n--;
+            for (auto it: adj[node]){
+                indeg[it]--;
+                if (indeg[it] == 0) q.push(it);
+            }
         }
         return n == 0;
     }
