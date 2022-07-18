@@ -1,5 +1,6 @@
 class Solution {
 public:
+    //bfs
     bool check(int src,vector<vector<int>>& graph,vector<int> col){
         queue<int> q;
         q.push(src);
