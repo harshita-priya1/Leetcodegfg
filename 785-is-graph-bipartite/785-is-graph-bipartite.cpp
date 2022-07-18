@@ -1,17 +1,17 @@
 class Solution {
 public:
-    //bfs
+    //dfs
     bool check(int src,vector<vector<int>>& graph,vector<int> col){
-        queue<int> q;
-        q.push(src);
+        stack<int> s;
+        s.push(src);
         col[src]=1;
-        while(!q.empty()){
-            int node=q.front();
-            q.pop();
+        while(!s.empty()){
+            int node=s.top();
+            s.pop();
             for(auto it: graph[node]){
                 if(col[it]==-1){
                     col[it]=1-col[node];
-                    q.push(it);
+                    s.push(it);
                 }
                 else if(col[it]==col[node]){
                     return false;
