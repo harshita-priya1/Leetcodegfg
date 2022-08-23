@@ -1,19 +1,18 @@
 class Solution {
 public:
-    
     double myPow(double x, int n) {
         double ans=1.0;
-        long long nn=n;
+        long long n0=n;
         if(n==0) return (double)1.00;
-        if(nn<0) nn=(long long)-1*nn;
-        while(nn){
-            if(nn%2){
+        if(n0<0) n0=(long long)-1*n0;
+        while(n0){
+            if(n0%2){
                 ans*=x;
-                nn--;
+                n0--;
             }
             else{
                 x*=x;
-                nn/=2;
+                n0/=2;
             }
         }
         if(n<0) ans= (double)1.00/(double)(ans);
