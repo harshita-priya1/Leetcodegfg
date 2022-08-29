@@ -2,8 +2,8 @@ class Solution {
 public:
     vector<int> searchRange(vector<int>& nums, int target) {
         vector<int>ans;
-        int ans1=-1;
-        int ans2=-1;
+        int a1=-1;
+        int a2=-1;
         int l=0;
         int h=nums.size()-1;
         int mid;
@@ -11,7 +11,7 @@ public:
         while(l<=h){
             mid=(h-l)/2 +l;
             if(nums[mid]==target){
-                ans1=mid;
+                a1=mid;
                 h=mid-1;
             }
             else if(nums[mid]<target)l=mid+1;
@@ -22,15 +22,15 @@ public:
         while(l<=h){
             mid=(h-l)/2 +l;
             if(nums[mid]==target){
-                ans2=mid;
+                a2=mid;
                 l=mid+1;
                 }
             
             else if(nums[mid]<target)l=mid+1;
             else if(nums[mid]>target)h=mid-1;
         }
-        ans.push_back(ans1);
-        ans.push_back(ans2);
+        ans.push_back(a1);
+        ans.push_back(a2);
         return ans;
     }
 };
