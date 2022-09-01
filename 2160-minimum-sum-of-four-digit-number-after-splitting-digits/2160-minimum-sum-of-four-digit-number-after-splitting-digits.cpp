@@ -8,7 +8,7 @@ public:
             num=num/10;
         }
         sort(a.begin(),a.end());
-        int sum=0,msum=10000,n2=0;
+        int n2=0;
         n1=n1*10 +a[0];
         n2=n2*10 +a[1];
         n1=n1*10 +a[2];
