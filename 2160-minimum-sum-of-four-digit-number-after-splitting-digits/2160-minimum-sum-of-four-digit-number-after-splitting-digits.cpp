@@ -1,9 +1,18 @@
 class Solution {
 public:
-     int minimumSum(int num) {
-        string s = to_string(num);
-        sort(s.begin(), s.end());
-        int res = (s[0] - '0' + s[1] - '0') * 10 + s[2] - '0' + s[3] - '0';
-        return res;
+    int minimumSum(int num) {
+        vector<int> a(4,0);
+        int n1=0;
+        for(int i=0;i<4;i++){
+            a[i]=num%10;
+            num=num/10;
+        }
+        sort(a.begin(),a.end());
+        int sum=0,msum=10000,n2=0;
+        n1=n1*10 +a[0];
+        n2=n2*10 +a[1];
+        n1=n1*10 +a[2];
+        n2=n2*10 +a[3];
+        return n1+n2;
     }
 };
