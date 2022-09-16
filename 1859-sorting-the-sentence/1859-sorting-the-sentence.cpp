@@ -1,25 +1,32 @@
 class Solution {
 public:
     string sortSentence(string s) {
-        vector<string>pos(10,"");
-        for(int i=0; i<s.size(); i++){
-            int j = i;
-            string temp;
-            while(!isdigit(s[j])){
-                temp.push_back(s[j]);
-                j++;
-            }
-            pos[s[j]-'0'] = temp;
-            i = j+1;
+        stringstream words(s); 
+        string word;
+        pair<int, string> m;
+        vector<pair<int, string> > sent;
+        
+        //SECTION 1
+        while(words>>word)
+        {
+            int len = word.size();
+            int i = int(word[len-1]) - 48;
+            sent.push_back(make_pair(i, word.substr(0, len-1)));
         }
-        string ans;
-        for(int i=1; i<10; i++){
-            if(pos[i].length()>0){
-                ans+=pos[i];
-                ans.push_back(' ');
-            }
+        
+        //SECTION 2
+        sort(sent.begin(), sent.end());
+        
+        //SECTION 3
+        string ans = "";
+        int len = sent.size();
+        for(int i=0; i<len; i++)
+        {
+            ans += sent[i].second;
+            if(i!= len-1)
+                ans += " ";
         }
-        ans.pop_back();
+        
         return ans;
     }
 };
